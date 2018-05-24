@@ -1,0 +1,17 @@
+body{
+    background-color: #D4D4D4;
+}
+.login{
+    width:800px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 200px;
+    background-color: #9d9d9d;
+
+}
+.login-content{
+    margin: 0 auto;
+    margin-top: 200px;
+    background-color: #9d9d9d;
+}
+

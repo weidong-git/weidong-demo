@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weidong.blog.staticservice.mapper.UserMapper">
+ <!-- <resultMap id="BaseResultMap" type="com.weidong.blog.commons.entity.BlogUser">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="phone_num" jdbcType="INTEGER" property="phoneNum" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="isp" jdbcType="VARCHAR" property="isp" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+  </resultMap>-->
+  <sql id="Base_Column_List">
+    id, phone_num, password,wpd_salt,nickname,reg_ip,this_ip,this_time,last_ip,last_time,create_time
+  </sql>
+  <insert id="insert" parameterType="com.weidong.blog.commons.entity.BlogUser">
+    insert into blog_user
+    SET
+      id = #{id},
+      phone_num = #{phoneNum},
+      password = #{password},
+      pwd_salt = #{pwdSalt},
+      nickname = #{nickname},
+      reg_ip = #{regIp},
+      this_ip = #{thisIp},
+      this_time = #{thisTime},
+      last_ip = #{lastIp},
+      last_time = #{lastTime},
+      create_time =#{createTime}
+  </insert>
+    <select id="getUserById"  resultMap="com.weidong.blog.commons.entity.BlogUser" parameterType="String">
+          select  <include refid="Base_Column_List"/>
+          from blog_user where id=#{id} or phone_num=#{id}
+    </select>
+    <update id="updateUserById"  parameterType="com.weidong.blog.commons.entity.BlogUser" >
+        update blog_user
+         <set>
+             <if test="password !=null || password != ''">
+                 password=#{password}
+             </if>
+             <if test="phone_num !=null || phone_num != ''">
+                 phone_num=#{phoneNum}
+             </if>
+             <if test="pwd_salt !=null || pwd_salt != ''">
+                 pwd_salt=#{pwdSalt}
+             </if>
+             <if test="this_ip !=null || this_ip != ''">
+                 this_ip=#{thisIp}
+             </if>
+             <if test="last_ip !=null || last_ip != ''">
+                 last_ip=#{lastIp}
+             </if>
+             <if test="last_time !=null || last_time != ''">
+                 last_time=#{lastTime}
+             </if>
+         </set>
+        <where>
+            <if test="id !=null || id != ''">
+                id=#{id}
+            </if>
+        </where>
+    </update>
+</mapper>
