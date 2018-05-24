@@ -2,6 +2,19 @@
 
 
 
+
+
+   $("#submit").click(function () {
+       var username = $("#username").val();
+       if(username == null || username == ''){
+           layer.msg('请输入手机号', {icon: 5});
+           return false;
+       }else if(!(/^1[34578]\d{9}$/.test(username))){
+           layer.msg('手机号码格式不正确', {icon: 5});
+           return false;
+       }
+   });
+
 // 刷新图片
 function changeImg() {
     var imgSrc = $("#imgObj");
