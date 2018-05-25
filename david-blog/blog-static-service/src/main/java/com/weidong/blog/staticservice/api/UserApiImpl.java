@@ -40,4 +40,9 @@ public class UserApiImpl implements UserServiceApi {
     public int updateUserById(@RequestBody BlogUser blogUser) {
         return userService.updateUserById(blogUser);
     }
+
+    @Override
+    public BlogUser Login(BlogUser blogUser) {
+        return null;
+    }
 }

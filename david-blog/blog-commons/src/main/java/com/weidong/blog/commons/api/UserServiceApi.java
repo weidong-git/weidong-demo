@@ -2,10 +2,7 @@ package com.weidong.blog.commons.api;
 
 import com.weidong.blog.commons.entity.BlogUser;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ClassName UserServiceApi
@@ -50,5 +47,12 @@ public interface UserServiceApi {
      */
     @PostMapping("/UserServiceApi/updateUserById")
     int updateUserById(@RequestBody BlogUser blogUser);
+
+    /**
+     * 用户登录
+     * @param blogUser
+     * @return
+     */
+    BlogUser Login(@RequestBody BlogUser blogUser);
 
 }

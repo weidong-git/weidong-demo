@@ -1,9 +1,15 @@
+$(function () {
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+        //自定义验证规则
+        form.verify({
 
-
-
-
-
-
+        });
+    });
+  /*用户登录*/
    $("#submit").click(function () {
        var username = $("#username").val();
        if(username == null || username == ''){
@@ -13,7 +19,35 @@
            layer.msg('手机号码格式不正确', {icon: 5});
            return false;
        }
+       var password = $("#password").val();
+       if (password == null || password == ''){
+           layer.msg('请输入密码！',{icon:5});
+           return false;
+       }
+       $.ajax({
+           url:"/auth/login",
+           type:"post",
+           datatype:"json",
+           data:{
+               phoneNum:username,
+               password:password
+           },
+           success:function (data) {
+               if (data.state=1) {
+                   layer.msg(data.message, {icon: 5});
+                   window.localhost.href="/view/admin-admin";
+               }else {
+                   layer.msg(data.message, {icon: 5});
+               }
+           }
+       });
+
    });
+
+
+
+});
+
 
 // 刷新图片
 function changeImg() {

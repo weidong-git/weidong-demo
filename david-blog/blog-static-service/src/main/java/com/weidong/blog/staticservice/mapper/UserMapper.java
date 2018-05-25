@@ -11,4 +11,6 @@ public interface UserMapper {
     BlogUser getUserById(String id);
 
     int updateUserById(BlogUser blogUser);
+
+    BlogUser Login(BlogUser blogUser);
 }

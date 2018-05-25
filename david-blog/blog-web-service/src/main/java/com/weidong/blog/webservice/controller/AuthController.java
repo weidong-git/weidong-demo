@@ -56,6 +56,13 @@ public class AuthController {
         vCode.write(response.getOutputStream());
         return null;
     }
+
+    /**
+     * 用户添加
+     * @param blogUser
+     * @param request
+     * @return
+     */
     @RequestMapping(value="/insertUser")
     @ResponseBody
     public JsonResult insertUser(BlogUser blogUser, HttpServletRequest request){
@@ -82,4 +89,13 @@ public class AuthController {
            return jsonResult;
        }
     }
+    @RequestMapping(value="/login")
+    @ResponseBody
+   public  JsonResult Login(BlogUser blogUser){
+       JsonResult jsonResult = new JsonResult();
+       BlogUser user = userServiceApi.Login(blogUser);
+       return  jsonResult;
+   }
+
+
 }

@@ -47,4 +47,8 @@ public class UserService {
        return userMapper.updateUserById(blogUser);
     }
 
+    public BlogUser Login(BlogUser blogUser){
+        return  userMapper.Login(blogUser);
+    }
+
 }
